@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shop</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500&display=swap");
+
+        body {
+            font-family: "Montserrat", sans-serif;
+            font-weight: 200;
+            margin: 0;
+            padding: 0;
+            font-size: 18px;
+            color: var(--tg-theme-text-color);
+            background: var(--tg-theme-bg-color);
+            text-align: center;
+        }
+
+        .h1 {
+            margin-top: 20px;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 390px;
+        }
+
+        .inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 230px 230px 230px;
+            grid-gap: 50px;
+        }
+
+        .img {
+            width: 150px;
+            margin-top: -10px;
+            margin-bottom: -10px;
+        }
+
+        .item {
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 50px;
+            border: none;
+            background: rgb(167, 32, 229);
+            border-radius: 100px;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 700;
+
+            transition: background .2s linear;
+        }
+
+        .btn:hover {
+            background: lightgreen;
+        }
+
+        .added-to-cart {
+            display: inline-block;
+            padding: 10px 10px;
+            border: none;
+            background: rgb(204, 49, 49);
+            border-radius: 10px;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 700;
+
+            transition: background .2s linear;
+        }
+
+    </style>
+</head>
+<body>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <h1>Каталог товаров</h1>
+    <div class="center">
+        <div class="container">
+            <div class="inner">
+                <div class="item" id="item1">
+                    <h3>Hookah Market 600 баллов</h3>
+                    <p>Кол-во: 1 шт.</p>
+                    <p>Стоимость: 250 ₽</p>
+                    <button class="btn" id="btn1" data-id="1">Купить</button>
+                </div>
+                <div class="item" id="item2">
+                    <h3>Магнит</h3>
+                    <p>Кол-во: 1 шт.</p>
+                    <p>Стоимость: 100 ₽</p>
+                    <button class="btn" id="btn2" data-id="2">Купить</button>
+                </div>
+                <div class="item" id="item3">
+                    <h3>Пятерочка 300 Баллов</h3>
+                    <p>Кол-во: 1 шт.</p>
+                    <p>Стоимость: 300 ₽</p>
+                    <button class="btn" id="btn3" data-id="3">Купить</button>
+                </div>
+                <div class="item" id="item4">
+                    <h3>Пятерочка 300 Баллов</h3>
+                    <p>Кол-во: 1 шт.</p>
+                    <p>Стоимость: 300 ₽</p>
+                    <button class="btn" id="btn4" data-id="4">Купить</button>
+                </div>
+                <div class="item" id="item5">
+                    <h3>Hookah Market 600 баллов</h3>
+                    <p>Кол-во: 1 шт.</p>
+                    <p>Стоимость: 250 ₽</p>
+                    <button class="btn" id="btn5" data-id="5">Купить</button>
+                </div>
+                <div class="item" id="item6">
+                    <h3>Магнит</h3>
+                    <p>Кол-во: 1 шт.</p>
+                    <p>Стоимость: 100 ₽</p>
+                    <button class="btn" id="btn6" data-id="6">Купить</button>
+                </div>
+                <div class="item" id="item7">
+                    <h3>Пятерочка 300 Баллов</h3>
+                    <p>Кол-во: 1 шт.</p>
+                    <p>Стоимость: 300 ₽</p>
+                    <button class="btn" id="btn7" data-id="7">Купить</button>
+                </div>
+                <div class="item" id="item8">
+                    <h3>Пятерочка 300 Баллов</h3>
+                    <p>Кол-во: 1 шт.</p>
+                    <p>Стоимость: 300 ₽</p>
+                    <button class="btn" id="btn8" data-id="8">Купить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let tg = window.Telegram.WebApp;
+        const buttons = document.querySelectorAll('.btn');
+        
+        tg.expand();
+
+        function handleClick(event) {
+            const id = parseInt(event.target.dataset.id, 10);
+            data = {
+                id: id
+            }
+
+            tg.sendData(JSON.stringify(data));
+            tg.close();
+        }
+        
+            // Назначаем обработчик события click для каждой кнопки
+        buttons.forEach(button => {
+            button.addEventListener('click', handleClick);
+        });
+    </script>
+</body>
+</html>
